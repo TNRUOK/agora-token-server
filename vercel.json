@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/agora-token.js": {
+      "maxDuration": 10
+    }
+  }
+}
