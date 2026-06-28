@@ -49,13 +49,12 @@ Give a clear, concise, helpful draft answer in 3-5 sentences. Be direct and educ
 
     const parts = data.candidates?.[0]?.content?.parts || [];
     const answer = parts.map(p => p.text || '').join('').trim();
-    const finishReason = data.candidates?.[0]?.finishReason;
 
     if (!answer) {
-      return res.status(500).json({ error: 'No response generated', debug: data });
+      return res.status(500).json({ error: 'No response generated' });
     }
 
-    return res.status(200).json({ answer, finishReason, debugUsage: data.usageMetadata });
+    return res.status(200).json({ answer });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
