@@ -27,7 +27,7 @@ Description: ${description}
 Give a clear, concise, helpful draft answer in 3-5 sentences. Be direct and educational. Do not say "I am an AI" or add disclaimers - just answer the question helpfully. If the question is too vague or you genuinely cannot help, say so briefly.`;
 
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
