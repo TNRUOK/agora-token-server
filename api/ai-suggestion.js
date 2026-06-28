@@ -35,7 +35,7 @@ Give a clear, concise, helpful draft answer in 3-5 sentences. Be direct and educ
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 300,
+            maxOutputTokens: 800,
           },
         }),
       }
@@ -47,13 +47,14 @@ Give a clear, concise, helpful draft answer in 3-5 sentences. Be direct and educ
       return res.status(geminiResponse.status).json({ error: data.error?.message || 'Gemini API error' });
     }
 
-    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    const parts = data.candidates?.[0]?.content?.parts || [];
+    const answer = parts.map(p => p.text || '').join('').trim();
 
     if (!answer) {
       return res.status(500).json({ error: 'No response generated' });
     }
 
-    return res.status(200).json({ answer: answer.trim() });
+    return res.status(200).json({ answer });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
